@@ -26,6 +26,7 @@ pima$insulin[pima$insulin==0] = NA
 pima$bmi[pima$bmi==0] = NA
 
 data2 <- na.omit(pima)
+
 attach(data2)
 model1 <- lm(glucose~pregnant+diastolic+triceps+insulin+bmi+diabetes+age, data=data2)
 summary(model1)
@@ -34,7 +35,7 @@ step(model1)
 #library(leaps) # You may have to install it first by > install.packages("leaps")
 model2 <- regsubsets(glucose~pregnant+diastolic+triceps+insulin+bmi+diabetes+age,data=data2)
 (rs <- summary(model2))
-
+par(mfrow=c(1,1))
 plot(2:8,rs$adjr2, pch=16,col=2,xlab="# of Parameters",ylab="Adjusted R^2")
 text(2:8,rs$adjr2,labels=round(rs$adjr2,4),pos=1,offset=0.3,cex=0.7)
 plot(2:8,rs$cp,pch=16,col=2,xlab="# of Parameters",ylab="Cp"); abline(0,1,col=4)
@@ -61,24 +62,38 @@ text(2:8,myAIC,labels=round(myAIC,2),pos=3,offset=0.3,cex=0.7)
 plot(2:8,myBIC,pch=16,col=2,xlab="# of Parameters",ylab="BIC")
 text(2:8,myBIC,labels=round(myBIC,2),pos=3,offset=0.3,cex=0.7)
 
+par(mfrow=c(2,2))
+plot(2:8,rs$adjr2, pch=16,col=2,xlab="# of Parameters",ylab="Adjusted R^2")
+text(2:8,rs$adjr2,labels=round(rs$adjr2,4),pos=1,offset=0.3,cex=0.7)
+plot(2:8,rs$cp,pch=16,col=2,xlab="# of Parameters",ylab="Cp"); abline(0,1,col=4)
+text(2:8,rs$cp,labels=round(rs$cp,2),pos=3,offset=0.3,cex=0.7)
+plot(2:8,myAICc,pch=16,col=2,xlab="# of Parameters",ylab="AICc")
+text(2:8,myAICc,labels=round(myAICc,2),pos=1,offset=0.3,cex=0.7)
+plot(2:8,myBIC,pch=16,col=2,xlab="# of Parameters",ylab="BIC")
+text(2:8,myBIC,labels=round(myBIC,2),pos=3,offset=0.3,cex=0.7)
+
 #library(MASS)
 boxcox(model_3)
 
 a=logLik(model_5)
-a=as.numeric(a)
+(-2*a[1])
 
 ll=-1799.57
-(-2*a)
-+16
+b=-2*a[1]
+c=14
+g=b+c
 
-model_6
+d=(2*7*8)
+e=392-6-2
+f=d/e
 
-2*(8)*(7)
-392-7-2
-144-383
-3615.375-239
+par(mfrow=c(2,2))
+plot(model_3)
 
+g+f
 vif(model_3)
+
+AICc(model_5)
 
 influencePlot(model_3)
 #anything >2 is a positive outlier, <-2 = - outlier
