@@ -74,6 +74,10 @@ text(2:8,myBIC,labels=round(myBIC,2),pos=3,offset=0.3,cex=0.7)
 
 #library(MASS)
 boxcox(model_3)
+data2$logG=log(data2$glucose)
+logmodel_3 <- lm(logG~insulin+age+diastolic,data=data2)
+plot(logmodel_3)
+
 
 a=logLik(model_5)
 (-2*a[1])
@@ -92,6 +96,14 @@ plot(model_3)
 
 g+f
 vif(model_3)
+summary(model_99)
+1/(1-0.1255)
+
+model_99=lm(age~insulin+diastolic,data=data2)
+summary(model_99)$r.sq
+1/(1-summary(model_99)$r.sq)
+vif(model_3)
+
 
 AICc(model_5)
 
@@ -100,3 +112,5 @@ influencePlot(model_3)
 sum(rstudent(model_3)>2)
 sum(rstudent(model_3) < -2)
 which((rstudent(model_3)) < -2)
+which((rstudent(model_3)) > 2)
+
