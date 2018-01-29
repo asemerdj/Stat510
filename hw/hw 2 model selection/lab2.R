@@ -20,6 +20,7 @@ if(!require(car)){
 }
 
 
+
 data1=read.csv("http://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/03/bea-2006.csv")
 data2=na.omit(data1)
 attach(data2)
