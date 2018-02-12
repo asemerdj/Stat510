@@ -62,22 +62,21 @@ legend(locator(1),lty=c(1,2,3),col=c(1,2,4),c("x0=0","x0=4","x0=8"),cex=1.5)
 ##d
 vonb=function(a,k,t0,t){
   y=a*(1-exp(-k*(t-t0)))
-  return(y)
-}
+  return(y)}
 
-t=seq(0,15,0.02)
-a=c(3,9,12)
-k=c(0,0,0)
+t=seq(0,10,0.02)
+a=c(2,4,6)
+k=c(1,3,5)
 t0=c(0,0,0)
-nam1=paste0("vb_a.",a[1],"_k.",k[1],"_t0.",t0[1])
-nam2=paste0("vb_a.",a[2],"_k.",k[2],"_t0.",t0[2])
-nam3=paste0("vb_a.",a[3],"_k.",k[3],"_t0.",t0[3])
+nam1=paste0("a.",a[1]," k.",k[1]," t0_",t0[1])
+nam2=paste0("a.",a[2]," k.",k[2]," t0_",t0[2])
+nam3=paste0("a.",a[3]," k.",k[3]," t0_",t0[3])
 
-b=gomp(a[1],k[1],t0[1],x)
-c=gomp(a[2],k[2],t0[2],x)
-d=gomp(a[3],k[3],t0[3],x)
+b=vonb(a[1],k[1],t0[1],x)
+c=vonb(a[2],k[2],t0[2],x)
+d=vonb(a[3],k[3],t0[3],x)
 
-plot(x,b,ylab="",type="l",lty=1,ylim=c(0,15))
+plot(x,b,ylab="",type="l",lty=1,ylim=c(0,6))
 lines(x,c,ylab="",type="l",lty=2,col=2)
 lines(x,d,ylab="",type = "l",lty=3,col=4)
-legend(locator(1),lty=c(1,2,3),col=c(1,2,4),c(nam1,nam2,nam3),cex=1.5)
+legend(locator(1),lty=c(1,2,3),col=c(1,2,4),c(nam1,nam2,nam3),cex=.75)
